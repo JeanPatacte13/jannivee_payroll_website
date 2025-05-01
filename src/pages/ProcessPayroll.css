@@ -1,0 +1,48 @@
+.process-payroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #070716;
+  }
+  
+  button {
+    background-color: #d7f337;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #34495e;
+  }
+  
+  table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: #f4f4f9;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  

@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import Dashboard from "./pages/Dashboard";
+import AddEmployee from "./pages/AddEmployee";
+import ProcessPayroll from "./pages/ProcessPayroll";
+import GeneratePayslip from "./pages/GeneratePayslip";
+import ViewReports from "./pages/ViewReports";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() =>
+            isLoggedIn ? (
+              <Redirect to="/dashboard" />
+            ) : (
+              <LoginPage onLogin={() => setIsLoggedIn(true)} />
+            )
+          }
+        />
+        <Route
+          exact
+          path="/dashboard"
+          render={() => (isLoggedIn ? <Dashboard /> : <Redirect to="/" />)}
+        />
+        <Route
+          exact
+          path="/add-employee"
+          render={() => (isLoggedIn ? <AddEmployee /> : <Redirect to="/" />)}
+        />
+        <Route
+          exact
+          path="/process-payroll"
+          render={() => (isLoggedIn ? <ProcessPayroll /> : <Redirect to="/" />)}
+        />
+        <Route
+          exact
+          path="/generate-payslip"
+          render={() =>
+            isLoggedIn ? <GeneratePayslip /> : <Redirect to="/" />
+          }
+        />
+        <Route
+          exact
+          path="/view-reports"
+          render={() => (isLoggedIn ? <ViewReports /> : <Redirect to="/" />)}
+        />
+      </Switch>
+    </Router>
   );
 }
 
